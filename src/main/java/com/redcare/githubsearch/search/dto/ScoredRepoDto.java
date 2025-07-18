@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
+/** Data Transfer Object representing a GitHub repository with an associated popularity score. */
 @Getter
 @Setter
 @AllArgsConstructor

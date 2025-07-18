@@ -25,6 +25,7 @@ class RepositoryServiceTest {
 
   @Test
   void testFindAndScore_ReturnsSortedList() {
+
     GitHubRepoDto repo1 = mock(GitHubRepoDto.class);
     GitHubRepoDto repo2 = mock(GitHubRepoDto.class);
 
@@ -44,5 +45,27 @@ class RepositoryServiceTest {
     assertNotNull(result);
     assertEquals(2, result.size());
     assertEquals("Repo2", result.get(0).getName());
+  }
+
+  @Test
+  void testFindAndScore_EmptyResults() {
+    when(mockClient.searchRepositories(anyString(), anyString(), anyInt(), anyInt()))
+        .thenReturn(List.of());
+
+    List<ScoredRepoDto> result = service.findAndScore("java", "2023-01-01", 0, 10);
+
+    assertNotNull(result);
+    assertTrue(result.isEmpty());
+  }
+
+  @Test
+  void testFindAndScore_NullLanguageAndDate() {
+    when(mockClient.searchRepositories(isNull(), isNull(), anyInt(), anyInt()))
+        .thenReturn(List.of());
+
+    List<ScoredRepoDto> result = service.findAndScore(null, null, 0, 10);
+
+    assertNotNull(result);
+    assertTrue(result.isEmpty());
   }
 }

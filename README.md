@@ -5,8 +5,11 @@ A Java-based application for searching GitHub repositories, built with Maven and
 ## Features
 
 - Search GitHub repositories
-- Java 17 (Eclipse Temurin)
-- Multi-stage Docker build for efficient image size
+- Uses Strategy design pattern for the Scoring
+- Uses simple weighted scoring mechanism where weights are configurable in yaml
+- Uses Caffeine Cache to store the response for 10mins
+- Implemented in Java 17 (Eclipse Temurin image for Docker build)
+- Includes Multi-stage Docker build for efficient image size
 
 ## Prerequisites
 

@@ -47,10 +47,10 @@ public class RepositoryController {
       throw new ConstraintViolationException("size must be >= 1", Collections.emptySet());
     }
 
-    List<ScoredRepoDto> list = service.findAndScore(lang, date, pageVal, sizeVal);
-    if (list.isEmpty()) {
+    List<ScoredRepoDto> scoredRepos = service.findAndScore(lang, date, pageVal, sizeVal);
+    if (scoredRepos.isEmpty()) {
       return ResponseEntity.noContent().build();
     }
-    return ResponseEntity.ok(list);
+    return ResponseEntity.ok(scoredRepos);
   }
 }

@@ -1,6 +1,10 @@
 server:
   port: 8080
 
+spring:
+  cache:
+    caffeine:
+      spec: expireAfterWrite=10m,maximumSize=100
 springdoc:
   swagger-ui:
     path: /swagger-ui.html

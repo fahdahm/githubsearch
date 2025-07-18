@@ -8,6 +8,7 @@ import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.ExchangeStrategies;
@@ -40,6 +41,9 @@ public class GitHubClient {
             .build();
   }
 
+  @Cacheable(
+      key = "#language + '-' + #createdAfter + '-' + #page + '-' + #size",
+      value = "githubSearchCache")
   public List<GitHubRepoDto> searchRepositories(
       String language, String createdAfter, int page, int size) {
     String query = "language:" + language + "+created:>" + createdAfter;
@@ -61,6 +65,7 @@ public class GitHubClient {
               .bodyToMono(SearchResponse.class)
               .timeout(Duration.ofSeconds(10))
               .block();
+
       return (response != null && response.getItems() != null)
           ? response.getItems()
           : Collections.emptyList();
