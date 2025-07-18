@@ -1,0 +1,17 @@
+server:
+  port: 8080
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+
+github:
+  api:
+    base-url: https://api.github.com
+    token: ${GITHUB_TOKEN:}
+    default-language: java
+    default-created-after: 2024-01-01
+  scorer:
+    weight-stars: 1.0
+    weight-forks: 1.0
+    weight-recency: 0.5
