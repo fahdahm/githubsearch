@@ -39,4 +39,4 @@ java -jar target/*.jar
 ```
 
 ## Swagger UI for Local Testing
-Swagger UI will be available at `http://localhost:8080/webjars/swagger-ui/index.html`
+Swagger UI will be available at `http://localhost:8080/swagger-ui.html`
